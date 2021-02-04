@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import IngredientList from './IngredientList'
+import BurgerPane from './BurgerPane'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const ingredients = [
+  {name: 'Kaiser Bun', color: 'saddlebrown'},
+  {name: 'Sesame Bun', color: 'sandybrown'},
+  {name: 'Gluten Free Bun', color: 'peru'},
+  {name: 'Lettuce Wrap', color: 'olivedrab'},
+  {name: 'Beef Patty', color: '#3F250B'},
+  {name: 'Soy Patty', color: '#3F250B'},
+  {name: 'Black Bean Patty', color: '#3F250B'},
+  {name: 'Chicken Patty', color: 'burlywood'},
+  {name: 'Lettuce', color: 'lawngreen'},
+  {name: 'Tomato', color: 'tomato'},
+  {name: 'Bacon', color: 'maroon'},
+  {name: 'Onion', color: 'lightyellow'}
+]
+
+class App extends Component {
+  state = {
+    burgerIngredients: []
+  }
+
+  addToBurger = (e) => {
+    let currentBurger = this.state.burgerIngredients
+    let newIngredient = {name: e.target.innerText, color: e.target.style.backgroundColor}
+    currentBurger.push(newIngredient)
+
+    this.setState({
+      burgerIngredients: currentBurger
+    })
+  }
+
+  clearBurger = (e) => {
+    this.setState({
+      burgerIngredients: []
+    })
+  }
+
+  render() {
+    return (
+      <div style={{display: "flex"}}>
+        <IngredientList ingredients={ingredients} addToBurger={this.addToBurger} />
+        <BurgerPane burgerIngredients={this.state.burgerIngredients} clearBurger={this.clearBurger} />
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App

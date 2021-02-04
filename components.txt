@@ -1,0 +1,29 @@
+App
+|--IngredientList
+|  |--Ingredient(s)
+|
+|--BurgerPane
+|  |--BurgerStack
+|  |  |--Ingredient(s)
+|  |
+|  |--ClearBurger
+
+
+- Write a class based component called App that renders IngredientList and BurguerPane
+
+Rendering Ingredients:
+- Declare an ingredients array of starter data in App
+- Declare an Ingredient component that renders a single ingredient
+- Declare an IngredientList component that is passed props (ingredients array) from App
+--render via map Ingredients components for each item in array
+
+Rendering BurgerPane
+- Create state value called BurguerIngredients array of objectr that is added to when a user clicks an ingredient
+- Declare a function in App that handles user click of ingredients and updates BurguerIngredients state
+-- function will run onClick on Ingredients under IngredientList
+- Render a component called BurgerPane is passed stated val props from App component - BurguerIngredients
+- In BurgerPane render a BurgerStack component that get pass state val props from BurgerPane component - BurguerIngredients
+- In BurgerStack is call .map on the passed val state props to render individual Ingredients components for each item in BurguerIngredients
+- Declare a function that handles clearing BurguerIngredients when a user clicks ClearBurger component button
+- In BurgerPane renders ClearBurger component and passes it a function to clear BurguerIngredients
+- Declare a component called ClearBurguer that onClick runs functions to clear BurguerIngredients
